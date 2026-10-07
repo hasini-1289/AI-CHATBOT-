@@ -16,6 +16,7 @@ while True:
     user_input = input("You: ")
     if user_input.lower() == "done":
         break
+    messages.append({"role": "user", "content": user_input})
     response = client.chat.completions.create(
         model= "openai/gpt-oss-20b",
         messages= messages
@@ -23,15 +24,7 @@ while True:
 
     assistant_message = response.choices[0].message.content
     print("Bot: ", assistant_message)
-    messages.append({"role": "user", "content": user_input})
+    
     messages.append({"role": "assistant", "content": assistant_message})
 
 
-
-    print(response.choices[0].message.content)
-
-# while True:
-#     user_input = input("You: ")
-#     if user_input.lower() == "done":
-#         break
-#     print("You said: ",user_input)
